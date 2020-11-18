@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/taskdb?useUnicode=true&serverTimezone=UTC
+    username: root
+    password: qwerty
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
