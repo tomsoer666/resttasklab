@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -34,5 +35,14 @@ public class RegistrationController {
         user.setRoles(Collections.singleton(Role.USER));
         userRepo.save(user);
         return "redirect:/login";
+    }
+    @GetMapping("/allusers")
+    public List<User> viewUsers() {
+        List<User> users = userRepo.findAll();
+        return users;
+    }
+    @GetMapping("/")
+    public String home() {
+        return "fuck you";
     }
 }
