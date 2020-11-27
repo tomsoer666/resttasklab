@@ -5,11 +5,9 @@ import com.restandroid.restandroid.model.User;
 import com.restandroid.restandroid.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +16,12 @@ import java.util.Map;
 public class RegistrationController {
     @Autowired
     private UserRepo userRepo;
+
+    @RequestMapping("/user")
+    public Principal user(Principal user) {
+        return user;
+    }
+
 
     @GetMapping("/registration")
     public String registration() {
@@ -36,11 +40,13 @@ public class RegistrationController {
         userRepo.save(user);
         return "redirect:/login";
     }
+
     @GetMapping("/allusers")
     public List<User> viewUsers() {
         List<User> users = userRepo.findAll();
         return users;
     }
+
     @GetMapping("/")
     public String home() {
         return "fuck you";
